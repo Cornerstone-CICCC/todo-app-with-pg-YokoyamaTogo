@@ -24,7 +24,7 @@ export const createTodo = async (task: string): Promise<Todo> => {
 };
 
 export const updateTodo = async (
-  id: number,
+  id: string,
   task: string | undefined,
   done: boolean | undefined
 ): Promise<Todo | undefined> => {
@@ -40,7 +40,7 @@ export const updateTodo = async (
   return result.rows[0];
 };
 
-export const deleteTodo = async (id: number): Promise<Todo | undefined> => {
+export const deleteTodo = async (id: string): Promise<Todo | undefined> => {
   const result = await pool.query<Todo>(
     "DELETE FROM todo_app WHERE id = $1 RETURNING *",
     [id]
